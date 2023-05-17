@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SesionRoutingModule } from './sesion-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { SigninComponent } from './components/signin/signin.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +14,7 @@ import { SigninComponent } from './components/signin/signin.component';
   imports: [
     CommonModule,
     SesionRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class SesionModule { }

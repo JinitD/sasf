@@ -1,28 +1,43 @@
 .continer {
     display: block;
+    height: 100%;
 }
+
+.log{
+    padding: 2%;
+    height: auto;
+}
+
 .log-in {
     padding: 3%;
     border-radius: 10px;
-    margin: 5%;
+    margin: 3%;
+}
+.movil {
+}
+.welcome {
 }
 
-.welcome {
-    padding: 3%;
-    background-color: rgb(46, 46, 46);
-    color: whitesmoke;
-    height: auto;
+.text {
+    display: grid;
     justify-items: center;
     text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 3%;
+    color: whitesmoke;
+    background-color: #273036;
 }
 
-.btn-home{
+.btn-home {
     color: rgb(255, 255, 255);
     background-color: rgb(19, 19, 19);
     width: 50%;
     transition: all 0.5s;
 }
-.btn-home:hover{
+
+.btn-home:hover {
     color: black;
     background-color: whitesmoke;
     width: 51%;
@@ -32,13 +47,15 @@
 
 @media (min-width: 600px) {
 
-    .btn-home{
+
+    .btn-home {
         color: rgb(255, 255, 255);
         background-color: rgb(19, 19, 19);
         width: 80%;
         transition: all 0.5s;
     }
-    .btn-home:hover{
+
+    .btn-home:hover {
         color: black;
         background-color: whitesmoke;
         width: 82%;
@@ -51,25 +68,36 @@
         display: flex;
         align-items: center;
     }
-    
+
+    .movil {
+        display: none;
+    }
+
     .welcome {
-        background-color: rgb(46, 46, 46);
-        color: whitesmoke;
         width: 60%;
         height: 100%;
+    }
+
+    .text {
         display: grid;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
+        height: 100%;
+        color: whitesmoke;
+        background-color: #273036;
         justify-items: center;
+        align-content: center;
+    }
+
+    .log {
+        display: flex;
+        justify-content: center;
+        width: 40%;
     }
 
     .log-in {
         border-radius: 10px;
         padding: 2%;
         margin: 2%;
-        width: 30%;
+        width: 80%;
         height: 50%;
     }
 

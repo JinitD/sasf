@@ -16,6 +16,14 @@ const routes: Routes = [
   }, {
     path: 'sesion',
     loadChildren: () => import('./sesion/sesion.module').then(m => m.SesionModule)
+  },
+  {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   }
 
 ];
