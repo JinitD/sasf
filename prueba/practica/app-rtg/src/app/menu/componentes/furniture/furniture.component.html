@@ -7,8 +7,26 @@
 
 
     <div class="list">
-        <div >
+        <div>
             <h3 class="properties">Rental properties</h3>
+        </div>
+
+
+        <div class="card-continer">
+            <div class="card shadow" *ngFor="let i of inmuebles">
+                <a class="link" [routerLink]="[i.idinmueble]" style="text-decoration: none; color: black">
+                    <div class="contenedor">
+                        <img src="assets\img\casa-example.jpeg" class="card-img-top imagen">
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{i.direccion}} </h5>
+                        <p class="card-text">{{i.tipo}} </p>
+                        <p class="card-text">{{i.precio | currency}} </p>
+                    </div>
+                </a>
+
+            </div>
         </div>
     </div>
 </div>

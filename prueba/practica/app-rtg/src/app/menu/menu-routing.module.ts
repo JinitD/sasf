@@ -4,6 +4,7 @@ import { NavMenuComponent } from '../shared/components/nav-menu/nav-menu.compone
 import { FurnitureComponent } from './componentes/furniture/furniture.component';
 import { BookingComponent } from './componentes/booking/booking.component';
 import { PetitionComponent } from './componentes/petition/petition.component';
+import { FurnitureDetaileComponent } from './componentes/furniture-detaile/furniture-detaile.component';
 
 const routes: Routes = [
 
@@ -12,6 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/furniture', pathMatch: 'full' },
       { path: 'furniture', component: FurnitureComponent },
+      { path: 'furniture/:idinmueble', component: FurnitureDetaileComponent },
       { path: 'booking', component: BookingComponent },
       { path: 'petition', component: PetitionComponent }
     ]
