@@ -11,6 +11,8 @@
     display: grid;
     align-items: center;
     align-content: center;
+    animation: floating  5s ease-in-out infinite;
+
 }
 
 .continer {
@@ -112,5 +114,17 @@
         padding: 1%;
         width: 30%;
         border-radius: 10px;
+    }
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+    100% {
+        transform: translateY(0px);
     }
 }

@@ -1,4 +1,4 @@
-import { Empleado } from "./Empleado";
+import { Usuario } from "./Usuario";
 
 export interface Inmueble {
     idinmueble: number;
@@ -6,5 +6,5 @@ export interface Inmueble {
     estado: string;
     precio: number;
     tipo: string;
-    empleado: Empleado;
+    empleado: Usuario;
 }
