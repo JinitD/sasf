@@ -1,130 +1,109 @@
-.example {
-    background-color: aqua;
-    background-image: url('../../../../assets/img/edi-example.jpg');
-    border-radius: 10px;
-    background-size: cover;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.397);
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-    display: grid;
-    align-items: center;
-    align-content: center;
-    animation: floating  5s ease-in-out infinite;
+.example-intro-img {
+  background-image: url('../../../../assets/img/edi-example.jpg');
+  border-radius: 10px;
+  background-size: cover;
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.295);
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 31rem;
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+  align-content: center;
+  animation: floating 5s ease-in-out infinite;
+}
+
+.shadow {
+  border-radius: 10px;
 
 }
 
 .continer {
-    display: grid;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    align-content: center;
-    margin: 3%;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  padding: 3%;
 }
 
 .list {
-    margin: 3%;
-    width: 100%;
+  margin: 3%;
+  width: 100%;
 }
 
 
 .contenedor:hover .imagen {
-    -webkit-transform: scale(0);
-    transform: scale(1.1);
-    transition: all 0.5s;
+  -webkit-transform: scale(0);
+  transform: scale(1.1);
+  transition: all 0.5s;
 }
 
 .contenedor .imagen {
-    transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .contenedor {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .list .card {
-    margin: 1%;
-    border: none;
+  margin: 1%;
+  border: none;
 }
 
-.properties {}
+.card-continer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-items: center;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+}
+
+.intro,
+.p-intro {
+  padding: 2%;
+}
+
 
 @media (min-width: 600px) {
+  .continer {
+    height: 90%;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
 
-    .card-continer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-items: center;
-        justify-content: space-between;
-        align-items: stretch;
-        width: 100%;
-    }
+  .list .card {
+    width: 30%;
+  }
 
-    .card {
-        margin: 1%;
-        width: 30%;
-    }
+  .intro {
+    padding: 2%;
+    width: 30%;
+  }
 
-    .continer {
-        display: grid;
-        justify-content: center;
-        justify-items: center;
-        align-items: center;
-        align-content: center;
-        margin: 3%;
-    }
+  .p-intro {
+    padding: 2%;
+    width: 50%;
+  }
 
-    .example {
-        background-color: rgba(0, 0, 0, 0.514);
-        background-image: url('../../../../assets/img/edi-example.jpg');
-        border-radius: 10px;
-        background-size: cover;
-        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.397);
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 300px;
-        overflow: hidden;
-        display: grid;
-        align-items: center;
-        align-content: center;
-    }
-
-    .intro {
-        padding: 2%;
-        width: 20%;
-    }
-
-    .p-intro {
-        padding: 2%;
-        width: 40%;
-    }
-
-    .img {
-        width: 100%;
-    }
-
-    .list {
-        margin: 3%;
-        width: 100%;
-    }
-
-    .properties {
-        padding: 1%;
-        width: 30%;
-        border-radius: 10px;
-    }
+  .properties {
+    padding: 1%;
+    width: 30%;
+    border-radius: 10px;
+  }
 }
 
 @keyframes floating {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-6px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }

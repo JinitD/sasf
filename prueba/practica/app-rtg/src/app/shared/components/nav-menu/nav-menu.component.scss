@@ -1,14 +1,29 @@
-#navbarNav{
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    justify-items: center;
+a {
+  border: none;
+  border-radius: 3px;
+  text-align: center;
 }
-.container-fluid{
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    justify-items: center;
+
+.navbar-nav {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+}
+
+.perfil {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+@media (min-width: 992px) {
+
+  .perfil {
+    position: absolute;
+    right: 0;
+    margin: 0 20px 0px 0px;
+  }
 }

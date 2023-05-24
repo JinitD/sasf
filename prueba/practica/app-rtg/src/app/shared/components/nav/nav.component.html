@@ -1,25 +1,26 @@
-  <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary"  data-bs-theme="dark" >
+<header class="sticky-top">
+  <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
     <div class="container-fluid ">
-        <img src="assets/img/logo.png" alt="Logo"   class="img-logo ">
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
-      aria-label="Toggle navigation">
+      <a ><img src="assets/img/logo.png" alt="Logo" class="img-logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse " id="navbarNav">
-        <ul class="navbar-nav">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav w-100">
           <li class="nav-item">
-            <a class="nav-link " routerLink="home" routerLinkActive="active">Home</a>
+            <a class="btn btn-outline-light" routerLink="/home" routerLinkActive="active">Home</a>
           </li>
           <li class="nav-item">
-            <a  class="nav-link"  routerLink="home/about" routerLinkActive="active">About</a>
+            <a class="btn btn-outline-light" routerLink="home/about" routerLinkActive="active">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/sesion" routerLinkActive="active">Login</a>
+            <a class="btn btn-outline-light" routerLink="/sesion" routerLinkActive="active">Login</a>
           </li>
-      
+
         </ul>
       </div>
     </div>
   </nav>
+
+</header>

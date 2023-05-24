@@ -1,9 +1,9 @@
-<div class="container">
+<div class="continer">
     <div class="card shadow">
         <p class="card-title ">Requests made</p>
-        <div class="card-body">
+        <div class="card-body scroll-barr">
         <table class="table">
-            <thead class="bg-dark text-white">
+            <thead class="bg-dark text-white ">
               <tr>
                 <th scope="col"></th>
                 <th scope="col">Address</th>
@@ -19,12 +19,12 @@
                     <tr *ngFor="let p of peticion">
                       <th scope="row">{{p.idpeticion}}</th>
                       <td>{{p.inmueble?.direccion}}</td>
-                      <td>{{p.inmueble?.estado}}</td>
+                      <td>{{p.estado}}</td>
                       <td>{{p.inmueble?.precio |currency}}</td>
                       <td>{{p.inmueble?.tipo}}</td>
                       <td>{{p.inmueble?.empleado?.nombre}}</td>
                       <td>{{p.inmueble?.empleado?.correo}}</td>
-                      <td><a class="btn btn-danger"><i class="bi bi-trash-fill"></i></a></td>
+                      <td><a class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></a></td>
                     </tr>
                   </tbody>
           </table>
@@ -48,4 +48,3 @@
         background:#fff;
     }
     </style>
-  

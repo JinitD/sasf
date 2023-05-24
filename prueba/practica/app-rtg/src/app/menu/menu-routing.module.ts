@@ -5,6 +5,7 @@ import { FurnitureComponent } from './componentes/furniture/furniture.component'
 import { BookingComponent } from './componentes/booking/booking.component';
 import { PetitionComponent } from './componentes/petition/petition.component';
 import { FurnitureDetaileComponent } from './componentes/furniture-detaile/furniture-detaile.component';
+import { ProfileComponent } from './componentes/profile/profile.component';
 
 const routes: Routes = [
 
@@ -15,7 +16,8 @@ const routes: Routes = [
       { path: 'furniture', component: FurnitureComponent },
       { path: 'furniture/:idinmueble', component: FurnitureDetaileComponent },
       { path: 'booking', component: BookingComponent },
-      { path: 'petition', component: PetitionComponent }
+      { path: 'petition', component: PetitionComponent },
+      { path: 'profile', component: ProfileComponent }
     ]
   },
 
