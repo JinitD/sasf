@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'sesion', pathMatch: 'full' },
   {
     path: '', component: LayoutComponent,
     children: [
@@ -15,6 +16,10 @@ const routes: Routes = [
   }, {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  }
+  , {
+    path: 'sesion',
+    loadChildren: () => import('./sesion/sesion.module').then(m => m.SesionModule)
   }
 
 ];

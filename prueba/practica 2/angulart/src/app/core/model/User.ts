@@ -1,3 +1,5 @@
-export interface User{
-    idusuario:number;
+export interface Usuario{
+    id:number;
+    nombre:string;
+    password:string;
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../model/User';
+import { Usuario } from '../../model/User';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -12,9 +12,9 @@ export class UserService {
   ) { }
 
   getAll() {
-    return this.http.get<User[]>(`/api/inmueble`);
+    return this.http.get<Usuario[]>(`/api/usuario`);
   }
   getbyId(idusuario: string) {
-    return this.http.get<User>(`/api/inmueble/${idusuario}`);
+    return this.http.get<Usuario>(`/api/usuario/${idusuario}`);
   }
 }
