@@ -1,0 +1,32 @@
+<header class="sticky-top">
+  <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid ">
+      <a  routerLink="furniture" ><img src="assets/img/logo.png" alt="Logo" class="img-logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="navbar-nav w-100 ">
+          <li class="nav-item">
+            <a class="btn btn-outline-light" routerLink="furniture" routerLinkActive="active">Furniture</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light" routerLink="petition" routerLinkActive="active">Petition</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light" routerLink="booking" routerLinkActive="active">Properties</a>
+          </li>
+          <li class="nav-item perfil">
+            <a class="btn btn-outline-light" routerLink="profile" routerLinkActive="active">
+              <i class="bi bi-person-circle"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+}
+
+* {}
+
+//scroll barr
+html::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-barr::-webkit-scrollbar {
+  width: 7px;
+}
+
+.scroll-barr::-webkit-scrollbar-thumb {
+  background-color: rgb(71, 71, 71);
+  border-radius: 10px;
+}
+
+//container
+.container {
+  max-width: 90%;
+}
+
+//logo del nav-barr
+.img-logo {
+  width: 3rem;
+}
+
+
+@media (min-width: 600px) {
+
+  .container {
+    max-width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 85%;
+    width: 100%;
+  }
+}

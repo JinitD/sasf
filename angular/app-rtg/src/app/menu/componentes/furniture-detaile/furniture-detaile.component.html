@@ -1,0 +1,28 @@
+<div class="continer ">
+    <div class="img ">
+        <img class="" src="assets\img\casa-example.jpeg" class="card-img-top imagen">
+    </div>
+
+    <div class="detalis">
+        <h2>{{inmueble?.direccion}}</h2>
+        <h3 class="w-100 ">
+            {{inmueble?.precio |currency}}
+        </h3>
+        <h4 >
+            {{inmueble?.tipo}}
+        </h4>
+        <div class="descrip">
+            <h5>Desciption</h5>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum consequatur consectetur hic dicta?
+                Excepturi,
+                ullam! Maiores, eligendi magni neque, cupiditate soluta odit at odio ratione doloremque natus debitis
+                similique eaque.</p>
+        </div>
+
+        <div class="btn-res">
+            <button type="button" class="btn btn-outline-dark" (click)="reserve($event)">Reserve</button>
+        </div>
+    </div>
+
+
+</div>
