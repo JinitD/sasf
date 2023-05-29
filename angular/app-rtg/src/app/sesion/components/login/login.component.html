@@ -1,0 +1,41 @@
+<div class="continer ">
+    <div class=" welcome">
+        <div class="text">
+            <h5>¡Nice to see you again!</h5>
+            <h1>Welcome Back</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto sunt et amet repudiandae ipsam
+                dignissimos
+                optio dolor laboriosam debitis, quibusdam labore quia. Dolore suscipit assumenda nostrum autem commodi
+                velit
+                quo!</p>
+            <a class="btn btn-dark btn-home" routerLink="/home" routerLinkActive="active">Return Home</a>
+        </div>
+        <svg class="movil" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path class="" fill="#273036" fill-opacity="1"
+                d="M0,160L80,138.7C160,117,320,75,480,69.3C640,64,800,96,960,117.3C1120,139,1280,149,1360,154.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
+            </path>
+        </svg>
+    </div>
+
+    <div class="log">
+        <div class="log-in shadow">
+            <h5>Login </h5>
+            <form class="m-2" (ngSubmit)="login($event)" [formGroup]="form" class="form">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="correo">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label" >Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+                </div>
+                <div class="mb-3 form-check">
+                    <a routerLink="sigin" routerLinkActive="active">don't you have an account?, Create acount</a>
+                </div>
+                <button type="submit"  class="btn btn-dark w-100">Login</button>
+            </form>
+        </div>
+    </div>
+
+</div>

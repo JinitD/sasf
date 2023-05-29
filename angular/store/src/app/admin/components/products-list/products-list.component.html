@@ -1,0 +1,29 @@
+<div class="tabla">
+    <table class="tableProduct mat-elevation-z8" mat-table [dataSource]="products">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID</th>
+            <td mat-cell *matCellDef="let p"> {{p.idProduct}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>title</th>
+            <td mat-cell *matCellDef="let p"> {{p.title}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef>price</th>
+            <td mat-cell *matCellDef="let p"> {{p.price | currency}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let p">
+                <a mat-raised-button color="primary" [routerLink]="['edit',p.id]">Editar</a>
+                <button mat-raised-button color="warn" (click)="deleteProduct(p.id)">Eliminar</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
