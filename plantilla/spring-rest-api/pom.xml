@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>sasf.net</groupId>
-	<artifactId>jwt-practic-1</artifactId>
+	<artifactId>spring-rest-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>jwt-practic-1</name>
+	<name>spring-rest-api</name>
 	<description>my-pryect</description>
 	<properties>
 		<java.version>11</java.version>
@@ -93,15 +93,12 @@
 		</dependency>
 	</dependencies>
 	
-	
-
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<!-- lombok  -->
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

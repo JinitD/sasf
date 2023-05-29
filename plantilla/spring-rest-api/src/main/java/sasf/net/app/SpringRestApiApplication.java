@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JwtPractic1Application {
+public class SpringRestApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JwtPractic1Application.class, args);
+		SpringApplication.run(SpringRestApiApplication.class, args);
 	}
 
 }

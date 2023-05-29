@@ -15,7 +15,7 @@ import sasf.net.app.service.UserService;
 
 @Controller
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/privade/users")
 @AllArgsConstructor
 public class UserController {
 	@Autowired

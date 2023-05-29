@@ -11,17 +11,18 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import sasf.net.app.entity.Role;
 
 public class TokenUtils {
 	private final static String ACCES_TOKEN_SECRET = "scretKeyscretKeyscretKeyscretKey";
 	private final static Long ACCES_TOKEN_VALIDITY_SECONDS = 2_592_000L;
 
-	public static String createToken(String name, String email) {
+	public static String createToken(String name, String email,Role role) {
 		Long expirationTime = ACCES_TOKEN_VALIDITY_SECONDS * 1_000;
 		Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
 		Map<String, Object> extra = new HashMap<>();
 		extra.put("name", name);
-
+		extra.put("role", role);
 		return Jwts.builder()
 				.setSubject(email)
 				.setExpiration(expirationDate)

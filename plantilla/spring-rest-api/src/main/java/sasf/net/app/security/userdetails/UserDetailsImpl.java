@@ -1,4 +1,4 @@
-package sasf.net.app.service;
+package sasf.net.app.security.userdetails;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
+import sasf.net.app.entity.Role;
 import sasf.net.app.entity.User;
 
 @AllArgsConstructor
@@ -16,6 +17,7 @@ public class UserDetailsImpl implements UserDetails{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private final User user;
 	
 	public UserDetailsImpl(User user) {
@@ -63,6 +65,9 @@ public class UserDetailsImpl implements UserDetails{
 	}
 	public String getName() {
 		return user.getFirstname();
+	}
+	public Role getRole() {
+		return user.getRole();
 	}
 
 }

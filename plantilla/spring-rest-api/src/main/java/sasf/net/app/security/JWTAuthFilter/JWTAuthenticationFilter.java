@@ -1,4 +1,4 @@
-package sasf.net.app.JWTAuth;
+package sasf.net.app.security.JWTAuthFilter;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sasf.net.app.security.AuthCredentials;
 import sasf.net.app.security.TokenUtils;
-import sasf.net.app.service.UserDetailsImpl;
+import sasf.net.app.security.userdetails.UserDetailsImpl;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
@@ -30,7 +30,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				authCredentials =  new ObjectMapper()
 						.readValue(request.getReader(), AuthCredentials.class);
 			} catch (IOException e) {
-				// TODO: handle exception
+				System.out.println(e);
 			}
 			UsernamePasswordAuthenticationToken usernamePat = 
 					new UsernamePasswordAuthenticationToken(authCredentials.getEmail()
@@ -49,7 +49,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		
 		UserDetailsImpl userDetails=(UserDetailsImpl)authResult.getPrincipal();
 		String token = TokenUtils
-						.createToken(userDetails.getName(), userDetails.getUsername());
+						.createToken(userDetails.getName(), userDetails.getUsername(),userDetails.getRole());
 		response.addHeader("Authorization", "Bearer "+token);
 		response.getWriter().flush();
 		

@@ -1,4 +1,4 @@
-package sasf.net.app.service;
+package sasf.net.app.security.userdetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findOneByEmail(email)
 		.orElseThrow(()-> new UsernameNotFoundException("The User with email "+ email+ "do not exist"));
+		
 		return new UserDetailsImpl(user);
 	}
 

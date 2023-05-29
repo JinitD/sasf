@@ -1,4 +1,4 @@
-package sasf.net.app.JWTAuth;
+package sasf.net.app.security.JWTAuthFilter;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 			HttpServletRequest request, 
 			HttpServletResponse response, 
 			FilterChain filterChain) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
 		String bearerToken = request.getHeader("Authorization");
 		System.out.println(bearerToken);
 		if(bearerToken!= null && bearerToken.startsWith("Bearer ")) {

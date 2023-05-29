@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> findAllUsers() {
-		return userRepository.findAll();
+		return userRepository.findAllByStatusNot("N");
 	}
 
 	@Override
