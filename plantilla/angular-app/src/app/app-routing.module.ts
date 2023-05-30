@@ -18,7 +18,7 @@ children:[
     ,   canActivate:[IsExpiredGuard],
   },
   {
-    path: 'page' ,
+    path: 'client' ,
     loadChildren: () => import('./page/page.module').then(m => m.PageModule),
     canActivate:[AuthGuard] , data: { roles: ['client',] }
   },

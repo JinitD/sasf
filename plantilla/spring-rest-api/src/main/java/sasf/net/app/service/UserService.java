@@ -3,15 +3,15 @@ package sasf.net.app.service;
 import java.util.List;
 import java.util.Optional;
 
-import sasf.net.app.entity.User;
+import sasf.net.app.entity.Users;
 
 public interface UserService {
 	
 	
-	public Optional<User> findById(Long id);
+	public Optional<Users> findById(Long id);
 
 
-	public List<User> findAllUsers();
+	public List<Users> findAllUsers();
 
-	public User save(User user);
+	public Users save(Users users);
 }

@@ -23,7 +23,7 @@ public class WebSecuriryConfig {
 	
 	private final JWTAuthorizationFilter jwtAuthorizationFilter;
 
-
+	
 
 	public WebSecuriryConfig(UserDetailsServiceImpl userDetailsService, JWTAuthorizationFilter jwtAuthorizationFilter) {
 		super();
@@ -43,6 +43,9 @@ public class WebSecuriryConfig {
 				.csrf()
 				.disable()
 				.authorizeRequests()
+					.antMatchers("/api/login").permitAll()
+					.antMatchers("/api/admin/**").hasRole("ADMIN")
+	                .antMatchers("/api/user/**").hasAnyRole("ADMIN", "USER")
 				.anyRequest()
 				.authenticated()
 				.and()
@@ -70,8 +73,9 @@ public class WebSecuriryConfig {
 	}
 
 
-//	public static void main(String [] args) {
-//		System.out.println("pass: " +new BCryptPasswordEncoder().encode("jhoan"));
-//	}
+
 
 }
+//public static void main(String [] args) {
+//System.out.println("pass: " +new BCryptPasswordEncoder().encode("jhoan"));
+//}

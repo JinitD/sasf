@@ -22,10 +22,11 @@ export class AuthGuard implements CanActivate {
     const rolesPath = route.data['roles'] as Array<string>; // Obtén los roles necesarios para la ruta desde los datos de la ruta
 
     if (token) {
-      const tokenInfo = jwt_decode(token) as { exp: number, role: Role };
+      const tokenInfo = jwt_decode(token) as { exp: number, role: string };
       const currentTime = Math.floor(Date.now() / 1000); // Obtiene la hora actual en segundos
+      console.log(tokenInfo)
       if (tokenInfo.exp >= currentTime) {
-        if (this.getPathByRole(rolesPath, tokenInfo.role.role)) {
+        if (this.getPathByRole(rolesPath, tokenInfo.role)) {
           return true;
         }
       }

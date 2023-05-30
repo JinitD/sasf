@@ -22,11 +22,11 @@ export class IsExpiredGuard implements CanActivate {
     const token = this.authService.getToken();
 
     if (token) {
-      const tokenInfo = jwt_decode(token) as { exp: number, role: Role };
+      const tokenInfo = jwt_decode(token) as { exp: number, role: string };
 
       const currentTime = Math.floor(Date.now() / 1000);
       if (tokenInfo.exp >= currentTime) {
-        this.getPathByRole(tokenInfo.role.role)
+        this.getPathByRole(tokenInfo.role)
         return false;
       }
     }
@@ -40,7 +40,7 @@ export class IsExpiredGuard implements CanActivate {
       path= 'admin'
     }
     else if(roleToken =='client'){
-      path= 'page'
+      path= 'client'
     }
     this.router.navigate([path]);
   }

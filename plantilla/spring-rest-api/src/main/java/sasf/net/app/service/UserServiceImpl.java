@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sasf.net.app.entity.User;
+import sasf.net.app.entity.Users;
 import sasf.net.app.repository.UserRepository;
 
 @Service
@@ -17,18 +17,18 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public Optional<User> findById(Long id) {
+	public Optional<Users> findById(Long id) {
 		return userRepository.findById(id);
 	}
 
 	@Override
-	public List<User> findAllUsers() {
+	public List<Users> findAllUsers() {
 		return userRepository.findAllByStatusNot("N");
 	}
 
 	@Override
-	public User save(User user) {
-		return userRepository.save(user);
+	public Users save(Users users) {
+		return userRepository.save(users);
 	}
 
 }

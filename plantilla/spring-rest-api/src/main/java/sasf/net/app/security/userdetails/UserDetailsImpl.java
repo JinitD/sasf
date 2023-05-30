@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
 import sasf.net.app.entity.Role;
-import sasf.net.app.entity.User;
+import sasf.net.app.entity.Users;
 
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails{
@@ -18,11 +18,13 @@ public class UserDetailsImpl implements UserDetails{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private final User user;
+	private final Users users;
+	private final Role role;
 	
-	public UserDetailsImpl(User user) {
+	public UserDetailsImpl(Users users,Role role) {
 		super();
-		this.user = user;
+		this.users = users;
+		this.role = role;
 	}
 
 	@Override
@@ -32,12 +34,12 @@ public class UserDetailsImpl implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		return user.getPassword();
+		return users.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return user.getEmail();
+		return users.getEmail();
 	}
 
 	@Override
@@ -64,10 +66,10 @@ public class UserDetailsImpl implements UserDetails{
 		return true;
 	}
 	public String getName() {
-		return user.getFirstname();
+		return users.getName();
 	}
-	public Role getRole() {
-		return user.getRole();
+	public String getRole() {
+		return role.getName();
 	}
 
 }

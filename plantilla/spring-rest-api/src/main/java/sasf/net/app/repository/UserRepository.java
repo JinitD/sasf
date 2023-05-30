@@ -6,10 +6,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import sasf.net.app.entity.User;
+import sasf.net.app.entity.Users;
 
-public interface UserRepository extends JpaRepository<User, Long>{
-	Optional<User> findOneByEmail(String email);
+public interface UserRepository extends JpaRepository<Users, Long>{
+	Optional<Users> findOneByEmail(String email);
 	
-	List<User> findAllByStatusNot(String status);
+	List<Users> findAllByStatusNot(String status);
 }
