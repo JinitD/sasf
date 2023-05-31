@@ -44,8 +44,8 @@ public class WebSecuriryConfig {
 				.disable()
 				.authorizeRequests()
 					.antMatchers("/api/login").permitAll()
-					.antMatchers("/api/admin/**").hasRole("ADMIN")
-	                .antMatchers("/api/user/**").hasAnyRole("ADMIN", "USER")
+					.antMatchers("/api/privade/**").hasRole("ADMIN")
+	                .antMatchers("/api/public/**").hasAnyRole("ADMIN","CLIENT")
 				.anyRequest()
 				.authenticated()
 				.and()
@@ -61,10 +61,11 @@ public class WebSecuriryConfig {
 
 
 	@Bean
-	AuthenticationManager AuthManager(HttpSecurity http) throws Exception {
+	AuthenticationManager AuthManager(HttpSecurity http) throws Exception {	
 		return http.getSharedObject(AuthenticationManagerBuilder.class)
 				.userDetailsService(userDetailsService)
-				.passwordEncoder(passwordEncoder()).and().build();
+				.passwordEncoder(passwordEncoder()).and()
+				.build();
 	}
 
 	@Bean

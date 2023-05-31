@@ -6,22 +6,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
+@Component
 public class TokenUtils {
+	
 	private final static String ACCES_TOKEN_SECRET = "scretKeyscretKeyscretKeyscretKey";
 	private final static Long ACCES_TOKEN_VALIDITY_SECONDS = 592_000L;
 
 	public static String createToken(String name, String email,String  role) {
-		Long expirationTime = ACCES_TOKEN_VALIDITY_SECONDS * 1;
-		Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
+		Date expirationDate = new Date(System.currentTimeMillis() + ACCES_TOKEN_VALIDITY_SECONDS);
+		
 		Map<String, Object> extra = new HashMap<>();
 		extra.put("name", name);
 		extra.put("role", role);
+		
 		return Jwts.builder()
 				.setSubject(email)
 				.setExpiration(expirationDate)

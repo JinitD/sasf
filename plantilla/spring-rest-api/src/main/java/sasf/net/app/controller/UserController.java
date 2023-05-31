@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.AllArgsConstructor;
+
 import sasf.net.app.service.UserService;
 
 
 @Controller
 @RestController
-@RequestMapping("/api/privade/users")
-@AllArgsConstructor
+@RequestMapping("/api/public/users")
+
 public class UserController {
 	@Autowired
 	private UserService userService;

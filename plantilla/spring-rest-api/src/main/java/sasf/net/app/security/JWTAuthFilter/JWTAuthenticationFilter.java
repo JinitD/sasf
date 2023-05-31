@@ -46,10 +46,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			HttpServletResponse response,
 			FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-		System.out.println("esoy en succesful");
 		UserDetailsImpl userDetails=(UserDetailsImpl)authResult.getPrincipal();
-		String token = TokenUtils
-						.createToken(userDetails.getName(), userDetails.getUsername(),userDetails.getRole());
+		String token =  TokenUtils
+				.createToken(userDetails.getName(), userDetails.getUsername(),userDetails.getRole());
 		response.addHeader("Authorization", "Bearer "+token);
 		response.getWriter().flush();
 		response.setStatus(200);
@@ -61,9 +60,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void unsuccessfulAuthentication(HttpServletRequest request, 
         HttpServletResponse response, AuthenticationException failed) 
         throws IOException, ServletException {
-        
         response.getWriter().write( 
-            new ObjectMapper().writeValueAsString(null));
+            new ObjectMapper().writeValueAsString("nada"));
         response.setStatus(401);
         response.setContentType("application/json");
 

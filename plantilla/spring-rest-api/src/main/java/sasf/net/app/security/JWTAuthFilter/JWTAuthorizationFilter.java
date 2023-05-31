@@ -18,7 +18,7 @@ import sasf.net.app.security.TokenUtils;
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
 	@Override
-	protected void doFilterInternal(
+	protected void doFilterInternal(//esto resive la peticion y confirma si es un token valido
 			HttpServletRequest request, 
 			HttpServletResponse response, 
 			FilterChain filterChain) throws ServletException, IOException {
@@ -26,8 +26,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 		String bearerToken = request.getHeader("Authorization");
 		System.out.println(bearerToken);
 		if(bearerToken!= null && bearerToken.startsWith("Bearer ")) {
+			System.out.println("esoy en succesful");
 			String token = bearerToken.replace("Bearer ", "");
-			UsernamePasswordAuthenticationToken usernamePAT = TokenUtils.getAuthentication(token);
+			UsernamePasswordAuthenticationToken usernamePAT =  TokenUtils.getAuthentication(token);
 			SecurityContextHolder.getContext().setAuthentication(usernamePAT);
 		}
 		filterChain.doFilter(request, response);
