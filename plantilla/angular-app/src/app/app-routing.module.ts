@@ -20,12 +20,12 @@ children:[
   {
     path: 'client' ,
     loadChildren: () => import('./page/page.module').then(m => m.PageModule),
-    canActivate:[AuthGuard] , data: { roles: ['client',] }
+    canActivate:[AuthGuard] , data: { roles: ['CLIENT',] }
   },
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    canActivate:[AuthGuard] , data: { roles: ['admin',] }
+    canActivate:[AuthGuard] , data: { roles: ['ADMIN',] }
   },
 
 ]}, {

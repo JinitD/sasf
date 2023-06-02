@@ -17,18 +17,36 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public Optional<Users> findById(Long id) {
+	public Optional<Users> findOneEntityById(Long id) {
 		return userRepository.findById(id);
 	}
 
 	@Override
-	public List<Users> findAllUsers() {
+	public List<Users> findAllEntity() {
 		return userRepository.findAllByStatusNot("N");
 	}
 
 	@Override
-	public Users save(Users users) {
+	public Users saveEntity(Users users) {
 		return userRepository.save(users);
+	}
+
+	@Override
+	public boolean deleteEntity(Long id) {
+		Optional <Users> oUser = findOneEntityById(id);
+		if(!oUser.isPresent()) {
+			return false;
+		}
+		oUser.get().setStatus("N");
+		saveEntity(oUser.get());
+		
+		return true;
+	}
+
+	@Override
+	public Optional<Users> findOneEntityByEmail(String email) {
+		// TODO Auto-generated method stub
+		return userRepository.findOneByEmail(email);
 	}
 
 }

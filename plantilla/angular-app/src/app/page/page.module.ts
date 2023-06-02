@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PageRoutingModule } from './page-routing.module';
-import { MenuComponent } from './components/menu/menu.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
-    MenuComponent,
     NavComponent,
-    ProfileComponent
+    ProfileComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

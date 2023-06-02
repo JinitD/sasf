@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from 'src/app/core/service/user/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
-
+  constructor(
+    private userService: UserService
+  ) {
+    this.fetch()
+  }
+  fetch(){
+    this.userService.getOneUserByEmail();
+  }
 }

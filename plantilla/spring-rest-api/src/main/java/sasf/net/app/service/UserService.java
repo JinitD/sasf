@@ -8,10 +8,13 @@ import sasf.net.app.entity.Users;
 public interface UserService {
 	
 	
-	public Optional<Users> findById(Long id);
+	public Optional<Users> findOneEntityById(Long id);
+	
+	public Optional<Users> findOneEntityByEmail(String email);
 
+	public List<Users> findAllEntity();
 
-	public List<Users> findAllUsers();
-
-	public Users save(Users users);
+	public Users saveEntity(Users users);
+	
+	public boolean deleteEntity(Long id);
 }
