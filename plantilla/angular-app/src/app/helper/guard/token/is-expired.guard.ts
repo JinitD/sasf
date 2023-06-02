@@ -39,8 +39,8 @@ export class IsExpiredGuard implements CanActivate {
     if(roleToken =='ADMIN'){
       path= 'admin'
     }
-    else if(roleToken =='CLIENT'){
-      path= 'client'
+    else if(roleToken =='PACIENTE'){
+      path= 'paciente'
     }
     this.router.navigate([path]);
   }

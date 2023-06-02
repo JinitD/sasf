@@ -1,0 +1,37 @@
+<div class="sigin">
+  <div class=" welcome">
+      <div class="text">
+          <h5>¡Nice to see you again!</h5>
+          <h1>Welcome Back</h1>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto sunt et amet repudiandae ipsam
+              dignissimos
+              optio dolor laboriosam debitis, quibusdam labore quia. Dolore suscipit assumenda nostrum autem commodi
+              velit
+              quo!</p>
+          <a class="btn btn-dark btn-home" routerLink="/home" >Home</a>
+      </div>
+
+  </div>
+
+  <div class="log ">
+      <div class="log-in shadow bg-light text-bg-light"  data-bs-theme="light">
+          <h5>Sign In</h5>
+          <form class="m-2 " (ngSubmit)="sigin($event)" [formGroup]="form"  class="form">
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label" >Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+              </div>
+              <div class="mb-3 form-check">
+                  <a routerLink="/sesion/signup" routerLinkActive="active">don't you have an account?, Create acount</a>
+              </div>
+              <button type="submit"  [disabled]="form.invalid"  class="btn btn-dark w-100">Login</button>
+          </form>
+      </div>
+  </div>
+
+</div>

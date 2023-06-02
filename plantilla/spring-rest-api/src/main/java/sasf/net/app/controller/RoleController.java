@@ -17,7 +17,7 @@ import sasf.net.app.service.RoleService;
 
 @Controller
 @RestController
-@RequestMapping("/api/public/role")
+@RequestMapping("/api/privade/role")
 public class RoleController {
 	
 	@Autowired

@@ -6,11 +6,9 @@ import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.AllArgsConstructor;
 import sasf.net.app.entity.Role;
 import sasf.net.app.entity.Users;
 
-@AllArgsConstructor
 public class UserDetailsImpl implements UserDetails{
 	
 	/**
@@ -66,7 +64,7 @@ public class UserDetailsImpl implements UserDetails{
 		return true;
 	}
 	public String getName() {
-		return users.getName();
+		return users.getNombre();
 	}
 	public String getRole() {
 		return role.getName();

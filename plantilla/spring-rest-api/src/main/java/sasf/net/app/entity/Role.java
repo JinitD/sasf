@@ -13,46 +13,60 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "roles")
-public class Role implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class Role implements Serializable {
 	
-    @Id
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name", length = 255, nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private Users users;
 
-	public  Long getId() {
+	
+	public Long getId() {
 		return id;
 	}
 
-	public  void setId(Long id) {
+	
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public  String getName() {
+	
+	public String getName() {
 		return name;
 	}
 
-	public  void setName(String name) {
+	
+	public void setName(String name) {
 		this.name = name;
 	}
+
+
+	public Users getUsers() {
+		return users;
+	}
+
+	
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	
+	
 
 
 		

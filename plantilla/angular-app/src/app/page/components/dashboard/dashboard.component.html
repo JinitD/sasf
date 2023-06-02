@@ -1,7 +1,59 @@
-<div class="card" >
-  <div class="card-body">
-    <h5 class="card-title">titulo </h5>
-    <p class="card-text">card text </p>
-    <p class="card-text">card text</p>
+<div class="contex">
+  <div class="card" >
+    <div class="card-body">
+      <h5 class="card-title">Reservar cita </h5>
+      <h6 class="card-subtitle">hospital ABC</h6>
+      <br>
+      <form>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Area de conocimiento</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        <button type="submit" class="btn btn-primary">Submit</button>
+          
+        </div>
+      
+
+    </form>
+
+    </div>
   </div>
+
+  <div class="card mt-5" >
+    <div class="card-body">
+      <h5 class="card-title">Lista de citas</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">observaciones</th>
+            <th scope="col">recetaMedica</th>
+            <th scope="col">enfermero</th>
+            <th scope="col">medico</th>
+            <th scope="col">Area Conocimiento</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of citas">
+            <td>{{c.observaciones}}</td>
+            <td>{{c.recetaMedica}}</td>
+            <td>{{c.enfermero.nombre}}</td>
+            <td>{{c.medico.nombre}}</td>
+            <td>{{c.areaConocimiento.nombre}}</td>
+            <td>
+              <a class="btn btn-danger ">eliminar</a>
+            </td>
+          </tr>
+      
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+  
 </div>
