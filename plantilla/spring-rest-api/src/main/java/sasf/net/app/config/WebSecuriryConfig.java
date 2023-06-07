@@ -1,9 +1,12 @@
 package sasf.net.app.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,71 +14,60 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import sasf.net.app.security.JWTAuthFilter.JWTAuthenticationFilter;
+
+import sasf.net.app.security.JWTAuthFilter.JWTAuthEntryPoint;
 import sasf.net.app.security.JWTAuthFilter.JWTAuthorizationFilter;
 import sasf.net.app.security.userdetails.UserDetailsServiceImpl;
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecuriryConfig {
 
-	
-	private final UserDetailsServiceImpl userDetailsService;
-	
-	private final JWTAuthorizationFilter jwtAuthorizationFilter;
-
-	
-
-	public WebSecuriryConfig(UserDetailsServiceImpl userDetailsService, JWTAuthorizationFilter jwtAuthorizationFilter) {
-		super();
-		this.userDetailsService = userDetailsService;
-		this.jwtAuthorizationFilter = jwtAuthorizationFilter;
-	}
-
-	@Bean
-	SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) 
-			throws Exception {
-		JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
-		jwtAuthenticationFilter.setAuthenticationManager(authManager);
-		jwtAuthenticationFilter.setFilterProcessesUrl("/api/login");
-		return http
-				.cors()
-				.and()
-				.csrf()
-				.disable()
-				.authorizeRequests()
-					.antMatchers("/api/login").permitAll()
-					.antMatchers("/api/privade/**").permitAll()//.hasRole("ADMIN")
-	                .antMatchers("/api/public/**").permitAll()//.hasAnyRole("ADMIN","CLIENT")
-				.anyRequest()
-				.authenticated()
-				.and()
-				.httpBasic()
-				.and()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-				.addFilter(jwtAuthenticationFilter)
-				.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
-				.build();
-	}
-
+	@Autowired
+	private UserDetailsServiceImpl userDetailsService;
 
 
 	@Bean
-	AuthenticationManager AuthManager(HttpSecurity http) throws Exception {	
-		return http.getSharedObject(AuthenticationManagerBuilder.class)
-				.userDetailsService(userDetailsService)
-				.passwordEncoder(passwordEncoder()).and()
-				.build();
+	public JWTAuthorizationFilter authenticationJwtTokenFilter() {
+		return new JWTAuthorizationFilter();
+	}
+
+	@Autowired
+	private JWTAuthEntryPoint unauthorizedHandler;
+
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+
+		authProvider.setUserDetailsService(userDetailsService);
+		authProvider.setPasswordEncoder(passwordEncoder());
+
+		return authProvider;
 	}
 
 	@Bean
-	PasswordEncoder passwordEncoder() {
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+		return authConfig.getAuthenticationManager();
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-//	public static void main(String [] args) {
-//		System.out.println("pass: " +new BCryptPasswordEncoder().encode("admin"));
-//		}
+	@Bean
+	SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
 
+		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+				.antMatchers("/api/auth/**").permitAll().antMatchers("/api/privade/**").permitAll()
+				.antMatchers("/api/public/**").permitAll().anyRequest().authenticated();
+		http.authenticationProvider(authenticationProvider());
+		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+		return http.build();
+	}
 
 }
+//public static void main(String [] args) {
+//System.out.println("pass: " +new BCryptPasswordEncoder().encode("jhoan"));
+//}

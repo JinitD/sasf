@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { RoleDTO, User } from 'src/app/core/model/Model';
-import { RoleService } from 'src/app/core/service/role/role.service';
+import { User } from 'src/app/core/model/Model';
 import { UserService } from 'src/app/core/service/user/user.service';
 
 @Component({
@@ -9,17 +8,16 @@ import { UserService } from 'src/app/core/service/user/user.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-  usersDto !: RoleDTO[];
+  users !: User[];
   constructor(
-    private roleService: RoleService
+    private userService: UserService
   ) {
     this.fetch();
   }
 
   fetch() {
-    this.roleService.getAllRole().subscribe(item => {
-      this.usersDto = item;
-      console.log(this.usersDto)
+    this.userService.getAllUsers().subscribe(item => {
+      this.users = item;
     });
   }
 }

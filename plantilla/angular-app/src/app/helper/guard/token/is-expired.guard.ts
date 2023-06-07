@@ -22,11 +22,11 @@ export class IsExpiredGuard implements CanActivate {
     const token = this.authService.getToken();
 
     if (token) {
-      const tokenInfo = jwt_decode(token) as { exp: number, role: string };
+      const tokenInfo = jwt_decode(token) as { exp: number, roles: string[] };
 
       const currentTime = Math.floor(Date.now() / 1000);
       if (tokenInfo.exp >= currentTime) {
-        this.getPathByRole(tokenInfo.role)
+        this.getPathByRole(tokenInfo.roles)
         return false;
       }
     }
@@ -34,14 +34,20 @@ export class IsExpiredGuard implements CanActivate {
     return true;
   }
 
-  getPathByRole(roleToken:string){
-    let path ;
-    if(roleToken =='ADMIN'){
-      path= 'admin'
+  getPathByRole(roleTokens: string[]): void {
+    let path: string;
+    console.log(roleTokens);
+
+    if (roleTokens.includes('ROLE_ADMIN')) {
+      path = 'admin';
+    } else if (roleTokens.includes('ROLE_USER')) {
+      path = 'user';
+    } else {
+      // Manejo de caso cuando no coincide ningún rol válido
+      console.error('Rol inválido');
+      return;
     }
-    else if(roleToken =='PACIENTE'){
-      path= 'paciente'
-    }
+
     this.router.navigate([path]);
   }
 

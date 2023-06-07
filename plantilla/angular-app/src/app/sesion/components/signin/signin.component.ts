@@ -22,8 +22,8 @@ export class SigninComponent {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(4)]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(1)]],
     })
   }
 
@@ -34,6 +34,7 @@ export class SigninComponent {
       console.log(creds)
       this.authService.signinAuth(creds)
         .subscribe(arg => {
+          console.log('entre a la ruta')
           this.router.navigate([''])
         });
 

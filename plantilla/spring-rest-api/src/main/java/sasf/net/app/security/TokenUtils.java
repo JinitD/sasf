@@ -1,53 +1,67 @@
 package sasf.net.app.security;
 
-import java.sql.Date;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.Claims;
+
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.SignatureAlgorithm;
+import sasf.net.app.security.userdetails.UserDetailsImpl;
 
+@SuppressWarnings("deprecation")
 @Component
 public class TokenUtils {
-	
-	private final static String ACCES_TOKEN_SECRET = "scretKeyscretKeyscretKeyscretKey";
-	private final static Long ACCES_TOKEN_VALIDITY_SECONDS = 592_000L;
+	  private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 
-	public static String createToken(String name, String email,String  role) {
-		Date expirationDate = new Date(System.currentTimeMillis() + ACCES_TOKEN_VALIDITY_SECONDS);
+	@Value("${sasf.net.app.jwtSecret}")
+	 private String aceesTokeonKey;
+	@Value("${sasf.net.app.jwtExpirationMs}")
+	private  Long accesTokenValiditySeconds ;
+
+
+	public  String createToken(Authentication authentication) {
+		Date expirationDate = new Date(System.currentTimeMillis() + accesTokenValiditySeconds);
+		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 		
-		Map<String, Object> extra = new HashMap<>();
-		extra.put("name", name);
-		extra.put("role", role);
-		
-		return Jwts.builder()
-				.setSubject(email)
+		return Jwts.builder().setSubject(userPrincipal.getUsername())
+				.claim("roles", userPrincipal.getAuthorities().stream().map(s -> s.toString()).toArray())
+				.setIssuedAt(new Date())
 				.setExpiration(expirationDate)
-				.addClaims(extra)
-				.signWith(Keys.hmacShaKeyFor(ACCES_TOKEN_SECRET.getBytes()))//firmar el token 
-				.compact();
+				.signWith(SignatureAlgorithm.HS512, aceesTokeonKey).compact();
 	}
 
-	public static UsernamePasswordAuthenticationToken getAuthentication(String token) {
-		try {
-			Claims claims = Jwts.parserBuilder()
-					.setSigningKey(ACCES_TOKEN_SECRET.getBytes())
-					.build()
-					.parseClaimsJws(token)
-					.getBody();
-			String email = claims.getSubject();
-			return new UsernamePasswordAuthenticationToken(email, null, Collections.emptyList());
-
-		} catch (JwtException e) {
-			System.out.println(e);
-			return null;
-		}
-
+//	public static UsernamePasswordAuthenticationToken getAuthentication(String token) {
+//		try {
+//			Claims claims = Jwts.parserBuilder().setSigningKey(ACCES_TOKEN_SECRET.getBytes()).build()
+//					.parseClaimsJws(token).getBody();
+//			String email = claims.getSubject();
+//			return new UsernamePasswordAuthenticationToken(email, null, Collections.emptyList());
+//
+//		} catch (JwtException e) {
+//			System.out.println(e);
+//			return null;
+//		}
+//
+//	}
+	
+	public String getUserNameFromJwtToken(String token) {
+	    return Jwts.parserBuilder().setSigningKey(aceesTokeonKey).build().parseClaimsJws(token).getBody().getSubject();
 	}
+
+	public  boolean validateJwtToken(String authToken) {
+	    try {
+	    	Jwts.parserBuilder().setSigningKey(aceesTokeonKey).build().parseClaimsJws(authToken).getBody().getSubject();
+	        return true;
+	    } catch (JwtException e) {
+	        logger.error("Invalid JWT token: {}", e.getMessage());
+	    }
+	    return false;
+	}
+	
 }

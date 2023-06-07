@@ -17,7 +17,7 @@ import sasf.net.app.service.RoleService;
 
 @Controller
 @RestController
-@RequestMapping("/api/privade/role")
+@RequestMapping("/api/public/role")
 public class RoleController {
 	
 	@Autowired
@@ -26,7 +26,7 @@ public class RoleController {
 	@GetMapping
 	@ResponseBody
 	public  ResponseEntity<?>  findAll() {
-		return ResponseEntity.status(HttpStatus.OK).body(entintyService.findAllRole());
+		return ResponseEntity.status(HttpStatus.OK).body(entintyService.findAllEntity());
 	}
 
 	
@@ -39,6 +39,5 @@ public class RoleController {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(oEntity.get());
 	}
-	
 	
 }

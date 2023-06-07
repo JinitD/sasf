@@ -3,6 +3,7 @@ package sasf.net.app.service;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class RoleServiceImpl  implements RoleService{
 	}
 
 	@Override
-	public List<Role> findAllRole() {
+	public List<Role> findAllEntity() {
 		return roleRepository.findAll();
 	}
 

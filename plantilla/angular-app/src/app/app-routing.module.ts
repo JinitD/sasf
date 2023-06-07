@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { IsExpiredGuard } from './helper/guard/token/is-expired.guard';
 import { AuthGuard } from './helper/guard/auth/auth.guard';
@@ -18,14 +18,14 @@ children:[
     ,   canActivate:[IsExpiredGuard],
   },
   {
-    path: 'paciente' ,
+    path: 'user' ,
     loadChildren: () => import('./page/page.module').then(m => m.PageModule),
-    canActivate:[AuthGuard] , data: { roles: ['PACIENTE',] }
+    canActivate:[AuthGuard] , data: { roles: ['ROLE_USER',] }
   },
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    canActivate:[AuthGuard] , data: { roles: ['ADMIN',] }
+    canActivate:[AuthGuard] , data: { roles: ['ROLE_ADMIN',] }
   },
 
 ]}, {
@@ -36,7 +36,9 @@ children:[
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

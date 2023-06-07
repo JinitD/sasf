@@ -14,10 +14,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   signinAuth(creds: Credencitals) {
-    return this.http.post(`/api/login`, creds, { observe: 'response' }).pipe(
-
+    return this.http.post(`/api/auth/signin`, creds, { observe: 'response' }).pipe(
       map((response: HttpResponse<any>) => {
+
         const body = response.body;
+        console.log(body)
         const headers = response.headers;
         const bearerToken = headers.get('Authorization')!;
         const token = bearerToken.replace('Bearer', '');
