@@ -3,26 +3,27 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/service/auth/auth.service';
 import jwt_decode from 'jwt-decode';
-import { Role } from 'src/app/core/model/Model';
-//import * as jwt_decode from 'jwt-decode';
+import { TokenService } from 'src/app/core/service/token/token.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private tokenService :TokenService
   ) {
 
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const token = this.authService.getToken();
+    const token = this.tokenService.getToken();
     const rolesPath = route.data['roles'] as Array<string>; // Obtén los roles necesarios para la ruta desde los datos de la ruta
 
     if (token) {
-      const tokenInfo = jwt_decode(token) as { exp: number, roles: string[] };
+      const tokenInfo = this.tokenService.getDecodeToken();
       const currentTime = Math.floor(Date.now() / 1000); // Obtiene la hora actual en segundos
       console.log(tokenInfo)
       if (tokenInfo.exp >= currentTime) {

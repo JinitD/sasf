@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/admin/admin.component';
-import { NavComponent } from './components/nav/nav.component';
+import { NavComponent } from '../shared/components/nav/nav.component';
 
 const routes: Routes = [
   {

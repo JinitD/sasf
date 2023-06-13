@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../../model/Model';
 import { AuthService } from '../auth/auth.service';
-
+import { TokenService } from '../token/token.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +10,8 @@ export class UserService {
 
   constructor(
     private authser: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private tokenService :TokenService
   ) { }
 
   getAllUsers() {
@@ -21,7 +22,7 @@ export class UserService {
   }
 
   getOneUserByEmail() {
-    const decodetoken = this.authser.getDecodeToken();
+    const decodetoken = this.tokenService.getDecodeToken();
     let data: any = {
       email: decodetoken.sub
     }

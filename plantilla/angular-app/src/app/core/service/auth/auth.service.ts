@@ -18,7 +18,6 @@ export class AuthService {
       map((response: HttpResponse<any>) => {
 
         const body = response.body;
-        console.log(body)
         const headers = response.headers;
         const bearerToken = headers.get('Authorization')!;
         const token = bearerToken.replace('Bearer', '');
@@ -26,14 +25,6 @@ export class AuthService {
         return body;
       })
     );
-  }
-
-  getToken():string {
-    return localStorage.getItem('token')!;
-  }
-
-   getDecodeToken() {
-    return jwt_decode(this.getToken())as { exp: number, role: string ,sub:string};
   }
 
   signupAuth() {

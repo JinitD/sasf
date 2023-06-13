@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/service/auth/auth.service';
 import jwt_decode from 'jwt-decode';
-import { Role } from 'src/app/core/model/Model';
+import { TokenService } from 'src/app/core/service/token/token.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,17 +12,18 @@ export class IsExpiredGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router
-    , private location: Location
+    , private location: Location,
+    private tokenService :TokenService
   ) {
 
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const token = this.authService.getToken();
+    const token = this.tokenService.getToken();
 
     if (token) {
-      const tokenInfo = jwt_decode(token) as { exp: number, roles: string[] };
+      const tokenInfo = this.tokenService.getDecodeToken();
 
       const currentTime = Math.floor(Date.now() / 1000);
       if (tokenInfo.exp >= currentTime) {
