@@ -1,0 +1,14 @@
+1. simpre iniciar por la documentancion
+2. poner simepre una captura para script sql
+3. en el manual del usuario siempre poner las pantallas y solo 3 lineas maximo
+
+retro
+	reclusos debe ser usuario
+	
+
+
+linsk: https://drive.google.com/file/d/1rht6GjxO58IooGLWBjkyzvBSOegBOnwf/view
+https://gist.github.com/jorgdz/1e205c5c298356b1c4e4d66cda035cdd
+https://github.com/Josue-Caballero/keep_clone_api
+https://gist.github.com/Elsorbo/1534c84aa6e9ccdb1a49f63b0f20bffe
+https://gist.github.com/Elsorbo/4a71372a20b0a3a37efa12f94610c561
